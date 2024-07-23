@@ -1,7 +1,6 @@
 import inquirer from "inquirer";
 import config from "../config/config.js";
-import { replicaConfigs } from "../config/replicaConfig.js";
-import { execAsAdmin, execAsync } from "./deployDatabases.js";
+import { execAsync } from "./deployDatabases.js";
 import { getReplicaMembers, handleWriteConcern } from "./initiateReplicaSet.js";
 import { deleteBaseDirectory } from "./generateConfig.js";
 

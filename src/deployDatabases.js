@@ -89,7 +89,7 @@ const deployAllDatabases = async () => {
         platform === "linux" || platform === "darwin" ? "--fork" : ""
       }`;
 
-      const { stdout, stderr } = await execAsAdmin(command);
+      const { stderr } = await execAsAdmin(command);
       if (stderr) {
         console.error(`Error starting ${databaseConfig.name}: ${stderr}`);
         continue;

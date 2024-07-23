@@ -1,36 +1,37 @@
-import config from "./config.js";
+import { config as dotenvConfig } from "dotenv";
+dotenvConfig();
 
 export const replicaConfigs = [
   {
-    name: config.replica_1_name,
-    ip: config.replica_1_ip,
-    port: config.replica_1_port,
-    logPath: config.replica_1_log_path,
-    dbPath: config.replica_1_db_path,
+    name: process.env.MONGOD1_NAME,
+    ip: process.env.MONGOD1_IP,
+    port: process.env.MONGOD1_PORT,
+    logPath: process.env.MONGOD1_LOG_PATH,
+    dbPath: process.env.MONGOD1_DB_PATH,
     is_arbiter: false,
   },
   {
-    name: config.replica_2_name,
-    ip: config.replica_2_ip,
-    port: config.replica_2_port,
-    logPath: config.replica_2_log_path,
-    dbPath: config.replica_2_db_path,
+    name: process.env.MONGOD2_NAME,
+    ip: process.env.MONGOD2_IP,
+    port: process.env.MONGOD2_PORT,
+    logPath: process.env.MONGOD2_LOG_PATH,
+    dbPath: process.env.MONGOD2_DB_PATH,
     is_arbiter: false,
   },
   {
-    name: config.replica_3_name,
-    ip: config.replica_3_ip,
-    port: config.replica_3_port,
-    logPath: config.replica_3_log_path,
-    dbPath: config.replica_3_db_path,
+    name: process.env.MONGOD3_NAME,
+    ip: process.env.MONGOD3_IP,
+    port: process.env.MONGOD3_PORT,
+    logPath: process.env.MONGOD3_LOG_PATH,
+    dbPath: process.env.MONGOD3_DB_PATH,
     is_arbiter: false,
   },
   {
     name: "arbiter",
-    ip: config.arbiter_ip,
-    port: config.arbiter_port,
-    logPath: config.arbiter_log_path,
-    dbPath: config.arbiter_db_path,
+    ip: process.env.ARBITER_IP,
+    port: process.env.ARBITER_PORT,
+    logPath: process.env.ARBITER_LOG_PATH,
+    dbPath: process.env.ARBITER_DB_PATH,
     is_arbiter: true,
   },
 ];

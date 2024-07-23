@@ -62,7 +62,7 @@ const writeFile = (filePath, content) => {
   console.log(`Configuration file generated at ${filePath}`);
 };
 
-const generateConfigContent = (isArbiter, { name, ip, port, logPath, dbPath, replicaSetName }) => {
+const generateConfigContent = ({ ip, port, logPath, dbPath, replicaSetName }) => {
   return `
 systemLog:
   destination: file
@@ -78,15 +78,14 @@ replication:
 `.trim();
 };
 
-const generateConfigFile = (name, ip, port, logPath, dbPath, is_arbiter) => {
+const generateConfigFile = (name, ip, port, logPath, dbPath) => {
   const fullLogPath = path.join(baseRootPath, `logs`, `${name}`, `${logPath}`);
   createFileIfNotExists(fullLogPath);
 
   const fullDbPath = path.join(baseRootPath, `data`, `${name}`, `${dbPath}`);
   createDirectoryIfNotExists(fullDbPath);
 
-  const configContent = generateConfigContent(is_arbiter, {
-    name,
+  const configContent = generateConfigContent({
     ip,
     port,
     logPath: fullLogPath,
@@ -101,8 +100,8 @@ const generateConfigFile = (name, ip, port, logPath, dbPath, is_arbiter) => {
 
 const createConfigurations = async () => {
   try {
-    replicaConfigs.forEach(({ name, ip, port, logPath, dbPath, is_arbiter }) => {
-      generateConfigFile(name, ip, port, logPath, dbPath, is_arbiter);
+    replicaConfigs.forEach(({ name, ip, port, logPath, dbPath }) => {
+      generateConfigFile(name, ip, port, logPath, dbPath);
     });
   } catch (error) {
     console.error("Error generating configuration files:", error);
